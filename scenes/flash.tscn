@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3c5l48jwkw3j"]
+
+[ext_resource type="Texture2D" uid="uid://bsmyeqvyoi4cs" path="res://assets/Effects/square.png" id="1_auae1"]
+[ext_resource type="Script" path="res://scripts/flash.gd" id="2_c2dh3"]
+
+[sub_resource type="Animation" id="Animation_3wx1f"]
+resource_name = "fade_out"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_doesa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xknb1"]
+_data = {
+"RESET": SubResource("Animation_doesa"),
+"fade_out": SubResource("Animation_3wx1f")
+}
+
+[node name="flash" type="Sprite2D"]
+modulate = Color(1, 0, 0, 1)
+z_index = 15
+position = Vector2(176, 319)
+scale = Vector2(12, 20.9375)
+texture = ExtResource("1_auae1")
+script = ExtResource("2_c2dh3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xknb1")
+}

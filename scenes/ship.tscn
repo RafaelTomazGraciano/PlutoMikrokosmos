@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwnj7dkjsnwtc"]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_dftsr"]
+[ext_resource type="Texture2D" uid="uid://dc3fm3k8aqdni" path="res://assets/Ships/Player/BlueShip.png" id="1_l1vuv"]
+[ext_resource type="Texture2D" uid="uid://c1fbgls5odjs8" path="res://icon.png" id="1_prfcj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5apnd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l1vuv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_prfcj")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq1lu"]
+size = Vector2(21.7143, 23)
+
+[node name="ship" type="Area2D"]
+script = ExtResource("1_dftsr")
+
+[node name="ship" type="AnimatedSprite2D" parent="."]
+position = Vector2(180, 580)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_5apnd")
+animation = &"flying"
+
+[node name="cannons" type="Node2D" parent="ship"]
+position = Vector2(-51.4286, -165.714)
+scale = Vector2(0.285714, 0.285714)
+
+[node name="left" type="Marker2D" parent="ship/cannons"]
+position = Vector2(146, 585)
+
+[node name="right" type="Marker2D" parent="ship/cannons"]
+position = Vector2(210, 585)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(179, 581.75)
+scale = Vector2(3.5, 3.5)
+shape = SubResource("RectangleShape2D_tq1lu")
+
+[node name="Timer" type="Timer" parent="."]
