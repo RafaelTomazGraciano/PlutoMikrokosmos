@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqehcv3k2bn5n"]
+[gd_scene load_steps=6 format=3 uid="uid://dqehcv3k2bn5n"]
 
 [ext_resource type="PackedScene" uid="uid://dwnj7dkjsnwtc" path="res://scenes/ship.tscn" id="1_14dyk"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_eje35"]
-[ext_resource type="PackedScene" uid="uid://byull7c5x8pg" path="res://scenes/stars.tscn" id="2_e50ai"]
+[ext_resource type="PackedScene" uid="uid://byull7c5x8pg" path="res://scenes/background.tscn" id="2_e50ai"]
 [ext_resource type="PackedScene" uid="uid://bcbfbo1ttarq8" path="res://scenes/enemies/spawner_enemy.tscn" id="3_a2iqx"]
+[ext_resource type="PackedScene" uid="uid://b0o5rfalcw0na" path="res://scenes/power-ups/spawner_powerups.tscn" id="5_6rvj8"]
 
 [node name="main" type="Node"]
 
@@ -16,3 +17,5 @@ script = ExtResource("1_eje35")
 [node name="stars" parent="." instance=ExtResource("2_e50ai")]
 
 [node name="spawner-enemy" parent="." instance=ExtResource("3_a2iqx")]
+
+[node name="spawner_powerups" parent="." instance=ExtResource("5_6rvj8")]

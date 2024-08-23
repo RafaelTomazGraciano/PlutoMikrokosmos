@@ -4,7 +4,6 @@ extends Area2D
 const scene_flare = preload("res://scenes/laser/flare.tscn")
 
 func _ready() -> void:
-	set_process(false)
 	create_flare()
 	
 
@@ -16,7 +15,6 @@ func create_flare():
 	var flare = scene_flare.instantiate()
 	flare.position = $sprite.position
 	add_child(flare)
-	set_process(true)
  
 
 
@@ -29,5 +27,5 @@ func _on_area_entered(area: Area2D) -> void:
 		area.armor -= 1
 		create_flare()
 		var camera = get_node("/root/main/camera")
-		camera.shake(3.0, 0.13)
+		camera.shake(5.0, 0.13)
 		queue_free()

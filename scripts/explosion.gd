@@ -6,6 +6,10 @@ func _ready() -> void:
 	$explosion.play("explosion")
 	$fire.emitting = true
 	$smoke.emitting = true
+	$AnimationPlayer.play("fade out")
 	
 	var camera = get_node("/root/main/camera")
-	camera.shake(8.0, 0.2)
+	camera.shake(10.0, 0.2)
+	
+	await get_tree().create_timer(0.7).timeout
+	queue_free()

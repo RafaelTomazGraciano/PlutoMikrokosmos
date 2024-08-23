@@ -6,26 +6,41 @@ const scene_laser = preload("res://scenes/laser/laser_ship.tscn")
 const scene_explosion = preload("res://scenes/explosion.tscn")
 const  scene_flash = preload("res://scenes/flash.tscn")
 
-#variable with get and set
+#variable of life with get and set
 @export var armor := 4:
 	set(value):
+		print(armor)
+		if value > 4:
+			return
+		
 		if value < armor:
 			var flash = scene_flash.instantiate()
 			add_child(flash)
 			
 		armor = value
+		emit_signal("armor_changed", armor)
 		if  armor <= 0:
 			create_explosion()
+			queue_free()
 	get:
 		return armor
 
+
+var is_double_shooting = false:
+	set(new_value):
+		is_double_shooting = new_value
+		await get_tree().create_timer(5.0).timeout
+		is_double_shooting = false
+
+
+signal armor_changed
 
 func _ready() -> void:
 	$ship.play("default")
 	# initialize with the ship position
 	player_position = $ship.position 
 	
-	$Timer.wait_time = 0.5
+	
 	$Timer.connect("timeout",Callable(self, "shoot"))
 	$Timer.start()
 	
@@ -60,17 +75,21 @@ func shoot():
 	var pos_right = get_node("ship/cannons/right").global_position
 	create_laser(pos_left)
 	create_laser(pos_right)
-
+	
+	if is_double_shooting:
+		var laser_left = create_laser(pos_left)
+		var laser_right = create_laser(pos_right)
+		laser_left.position.x = -25
+		laser_right.position.x = 25
 
 func create_laser(pos):
 	var laser = scene_laser.instantiate()
 	laser.position = pos
 	add_child(laser)
+	return laser
 
 
 func create_explosion():
 	var explosion = scene_explosion.instantiate()
 	explosion.position = player_position
-	add_child(explosion)
-	await get_tree().create_timer(0.5).timeout
-	queue_free()
+	get_node("/root/main").add_child(explosion)

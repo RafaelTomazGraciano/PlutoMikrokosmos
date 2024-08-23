@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvh3cds8gmydc"]
+
+[ext_resource type="Script" path="res://scripts/power-ups/heart_recharge.gd" id="1_uai1h"]
+[ext_resource type="Texture2D" uid="uid://csqwegnbuk0fg" path="res://assets/Effects/Heart_recharge.png" id="1_xsn1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h3cv"]
+size = Vector2(42, 42)
+
+[node name="heart-recharge" type="Area2D"]
+script = ExtResource("1_uai1h")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_xsn1x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4h3cv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -10,6 +10,7 @@ const scene_explosion = preload("res://scenes/explosion.tscn")
 		armor = value
 		if  armor <= 0:
 			create_explosion()
+			queue_free()
 	get:
 		return armor
 
@@ -34,8 +35,5 @@ func _on_area_entered(area: Area2D) -> void:
 
 func create_explosion():
 	var explosion = scene_explosion.instantiate()
-	#set_process(false)
-	explosion.position = $sprite.position
-	add_child(explosion)
-	await get_tree().create_timer(0.7).timeout
-	queue_free()
+	explosion.position = position
+	get_node("/root/main").add_child(explosion)
