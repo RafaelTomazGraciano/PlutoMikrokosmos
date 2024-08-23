@@ -1,0 +1,206 @@
+[gd_scene load_steps=13 format=3 uid="uid://bll5go266krw2"]
+
+[ext_resource type="FontFile" path="res://fonts/m5x7.tres" id="1_1stwk"]
+[ext_resource type="Texture2D" uid="uid://6egv68s21ipb" path="res://assets/Background/Start_menu.png" id="1_jgqrp"]
+[ext_resource type="Texture2D" uid="uid://bdt10p0vx7sal" path="res://assets/Button/Hover button.png" id="2_6h5o2"]
+[ext_resource type="Texture2D" uid="uid://dkf3pfdkw0qei" path="res://assets/Button/Press button.png" id="3_gmdet"]
+[ext_resource type="Texture2D" uid="uid://iivimh0imhhv" path="res://assets/Button/Normal button.png" id="4_jcbeu"]
+[ext_resource type="Texture2D" uid="uid://csqwegnbuk0fg" path="res://assets/Effects/Heart_recharge.png" id="7_3ures"]
+[ext_resource type="FontFile" uid="uid://bvpbxe36uh3al" path="res://fonts/m5x7.ttf" id="7_hlpm7"]
+[ext_resource type="Texture2D" uid="uid://bq385c65m3a8o" path="res://assets/Powers/Power_1.png" id="8_5oic0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hl161"]
+texture = ExtResource("2_6h5o2")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d8kti"]
+texture = ExtResource("3_gmdet")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0x62q"]
+texture = ExtResource("4_jcbeu")
+expand_margin_left = 12.0
+expand_margin_top = 13.0
+expand_margin_right = 10.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="GDScript" id="GDScript_ak1k1"]
+script/source = "extends Button
+
+
+
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/start.tscn\")
+"
+
+[node name="tips" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_jgqrp")
+centered = false
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 103.0
+offset_right = 352.0
+offset_bottom = 144.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_1stwk")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_hl161")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d8kti")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0x62q")
+text = "BACK"
+script = SubResource("GDScript_ak1k1")
+
+[node name="left" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 195.0
+offset_right = 75.0
+offset_bottom = 240.0
+texture = ExtResource("4_jcbeu")
+
+[node name="Label" type="Label" parent="left"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -11.0
+offset_right = 45.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "←
+"
+horizontal_alignment = 2
+
+[node name="right" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 195.0
+offset_right = 141.0
+offset_bottom = 240.0
+texture = ExtResource("4_jcbeu")
+
+[node name="Label" type="Label" parent="right"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -11.0
+offset_right = 45.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "→
+"
+horizontal_alignment = 2
+
+[node name="or" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 161.0
+offset_right = 96.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "OR"
+horizontal_alignment = 1
+
+[node name="A" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 125.0
+offset_right = 71.0
+offset_bottom = 170.0
+texture = ExtResource("4_jcbeu")
+
+[node name="Label" type="Label" parent="A"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "A
+"
+horizontal_alignment = 1
+
+[node name="D" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 125.0
+offset_right = 141.0
+offset_bottom = 170.0
+texture = ExtResource("4_jcbeu")
+
+[node name="Label" type="Label" parent="D"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "D
+"
+horizontal_alignment = 1
+
+[node name="explain" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 166.0
+offset_right = 300.0
+offset_bottom = 233.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "Move right
+and left"
+horizontal_alignment = 1
+
+[node name="health" type="Sprite2D" parent="."]
+position = Vector2(88, 280)
+scale = Vector2(3, 3)
+texture = ExtResource("7_3ures")
+
+[node name="explain2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 260.0
+offset_right = 315.0
+offset_bottom = 292.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "Restore health"
+horizontal_alignment = 1
+
+[node name="power-up" type="Sprite2D" parent="."]
+position = Vector2(88, 335)
+scale = Vector2(3, 3)
+texture = ExtResource("8_5oic0")
+
+[node name="explain3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 315.0
+offset_right = 262.0
+offset_bottom = 347.0
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "Power-ups"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="back" to="back" method="_on_pressed"]

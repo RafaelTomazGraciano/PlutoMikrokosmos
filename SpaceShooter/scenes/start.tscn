@@ -1,0 +1,136 @@
+[gd_scene load_steps=15 format=3 uid="uid://cpup0kbtj3u07"]
+
+[ext_resource type="Script" path="res://scripts/start.gd" id="1_52we6"]
+[ext_resource type="FontFile" path="res://fonts/m5x7.tres" id="1_x2vcx"]
+[ext_resource type="Texture2D" uid="uid://bdt10p0vx7sal" path="res://assets/Button/Hover button.png" id="2_4vtde"]
+[ext_resource type="Texture2D" uid="uid://cjkawnj0cg08f" path="res://assets/Background/background_2.png" id="2_r7o0p"]
+[ext_resource type="PackedScene" uid="uid://byull7c5x8pg" path="res://scenes/stars.tscn" id="3_16cnx"]
+[ext_resource type="Texture2D" uid="uid://ft2fl13q5mbj" path="res://assets/Shoot/Enemy Shoots/Shoot_1/ES1_0000.png" id="3_oy6w8"]
+[ext_resource type="Texture2D" uid="uid://iivimh0imhhv" path="res://assets/Button/Normal button.png" id="3_ptjm6"]
+[ext_resource type="Texture2D" uid="uid://ck0sq732xew3w" path="res://assets/Shoot/Nave Shoots/3_Shoot/S3_0003.png" id="4_immig"]
+[ext_resource type="Texture2D" uid="uid://dkf3pfdkw0qei" path="res://assets/Button/Press button.png" id="4_nqeqw"]
+[ext_resource type="Texture2D" uid="uid://kytea4q1rr2a" path="res://assets/Score and life/Score1.png" id="6_hd28h"]
+[ext_resource type="FontFile" uid="uid://bvpbxe36uh3al" path="res://fonts/m5x7.ttf" id="7_4h5g5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gngl1"]
+texture = ExtResource("2_4vtde")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0v2cp"]
+texture = ExtResource("4_nqeqw")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htti1"]
+texture = ExtResource("3_ptjm6")
+expand_margin_left = 12.0
+expand_margin_top = 13.0
+expand_margin_right = 10.0
+expand_margin_bottom = 15.0
+
+[node name="start" type="Node"]
+script = ExtResource("1_52we6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_r7o0p")
+centered = false
+
+[node name="background" parent="." instance=ExtResource("3_16cnx")]
+
+[node name="title" type="Label" parent="."]
+offset_right = 360.0
+offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("7_4h5g5")
+theme_override_font_sizes/font_size = 100
+text = "SPACE
+SHOOTER"
+horizontal_alignment = 1
+
+[node name="laser" type="Sprite2D" parent="title"]
+position = Vector2(55, 52)
+scale = Vector2(4, 4)
+texture = ExtResource("3_oy6w8")
+
+[node name="laser2" type="Sprite2D" parent="title"]
+position = Vector2(331, 131)
+scale = Vector2(4, 4)
+texture = ExtResource("4_immig")
+
+[node name="play" type="Button" parent="."]
+offset_left = 134.0
+offset_top = 340.0
+offset_right = 229.0
+offset_bottom = 381.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_x2vcx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_gngl1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0v2cp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_htti1")
+text = "PLAY"
+
+[node name="guide" type="Button" parent="."]
+offset_left = 134.0
+offset_top = 420.0
+offset_right = 229.0
+offset_bottom = 461.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_x2vcx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_gngl1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0v2cp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_htti1")
+text = "TIPS"
+
+[node name="quit" type="Button" parent="."]
+offset_left = 134.0
+offset_top = 500.0
+offset_right = 229.0
+offset_bottom = 541.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_x2vcx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_gngl1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0v2cp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_htti1")
+text = "QUIT"
+
+[node name="text_score" type="TextureRect" parent="."]
+offset_left = 139.0
+offset_top = 235.0
+offset_right = 239.0
+offset_bottom = 285.0
+texture = ExtResource("6_hd28h")
+
+[node name="Label" type="Label" parent="text_score"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 4.0
+offset_right = 90.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("7_4h5g5")
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="bestscore" type="Label" parent="text_score"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 163.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("7_4h5g5")
+theme_override_font_sizes/font_size = 60
+text = "BESTSCORE
+"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="guide" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnlhi5a3b3msm"]
+
+[ext_resource type="Script" path="res://scripts/enemies/blue_enemy.gd" id="1_nx7aw"]
+[ext_resource type="Texture2D" uid="uid://c63xfkxskfoah" path="res://assets/Ships/Enemys/Blue Enemy.png" id="2_yaqs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdvrr"]
+size = Vector2(79, 96)
+
+[node name="blue_enemy" type="Area2D"]
+script = ExtResource("1_nx7aw")
+velocity = Vector2(75, 75)
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_yaqs1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_cdvrr")
+
+[node name="cannon" type="Marker2D" parent="."]
+position = Vector2(1, 51)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

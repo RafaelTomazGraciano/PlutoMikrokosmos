@@ -1,0 +1,140 @@
+[gd_scene load_steps=20 format=3 uid="uid://dqehcv3k2bn5n"]
+
+[ext_resource type="PackedScene" uid="uid://dwnj7dkjsnwtc" path="res://scenes/ship.tscn" id="1_14dyk"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_eje35"]
+[ext_resource type="Texture2D" uid="uid://b6a545perh1aw" path="res://assets/Background/background_1.png" id="1_hlxac"]
+[ext_resource type="PackedScene" uid="uid://byull7c5x8pg" path="res://scenes/stars.tscn" id="2_e50ai"]
+[ext_resource type="PackedScene" uid="uid://bcbfbo1ttarq8" path="res://scenes/enemies/spawner_enemy.tscn" id="3_a2iqx"]
+[ext_resource type="PackedScene" uid="uid://b0o5rfalcw0na" path="res://scenes/power-ups/spawner_powerups.tscn" id="5_6rvj8"]
+[ext_resource type="Texture2D" uid="uid://kytea4q1rr2a" path="res://assets/Score and life/Score1.png" id="6_e01eu"]
+[ext_resource type="FontFile" uid="uid://bvpbxe36uh3al" path="res://fonts/m5x7.ttf" id="7_dtd8o"]
+[ext_resource type="FontFile" path="res://fonts/m5x7.tres" id="8_k8ryh"]
+[ext_resource type="Texture2D" uid="uid://bdt10p0vx7sal" path="res://assets/Button/Hover button.png" id="9_6wns4"]
+[ext_resource type="Texture2D" uid="uid://dkf3pfdkw0qei" path="res://assets/Button/Press button.png" id="10_x36ea"]
+[ext_resource type="Texture2D" uid="uid://iivimh0imhhv" path="res://assets/Button/Normal button.png" id="11_akh4e"]
+[ext_resource type="Texture2D" uid="uid://bfy8ux12cahdv" path="res://assets/Score and life/Lifes/life_1.png" id="13_alht5"]
+
+[sub_resource type="GDScript" id="GDScript_y0wx2"]
+script/source = "extends TextureRect
+
+var score = 0:
+	set(new_value):
+		score = new_value
+		$Label.text = str(score)
+		
+		#save bestscore
+		if score > Game.bestscore:
+			Game.bestscore = score
+		
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3n57s"]
+texture = ExtResource("9_6wns4")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6m5mg"]
+texture = ExtResource("10_x36ea")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u71iu"]
+texture = ExtResource("11_akh4e")
+expand_margin_left = 12.0
+expand_margin_top = 13.0
+expand_margin_right = 10.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="GDScript" id="GDScript_x67d1"]
+script/source = "extends Button
+
+
+
+
+func _on_ship_tree_exited() -> void:
+	visible = true
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/start.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_hpffd"]
+script/source = "extends Sprite2D
+
+
+func _on_ship_armor_changed(armor) -> void:
+	frame = armor
+"
+
+[node name="main" type="Node"]
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -5
+texture = ExtResource("1_hlxac")
+centered = false
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("1_eje35")
+
+[node name="ship" parent="." instance=ExtResource("1_14dyk")]
+position = Vector2(180, 580)
+
+[node name="stars" parent="." instance=ExtResource("2_e50ai")]
+
+[node name="spawner-enemy" parent="." instance=ExtResource("3_a2iqx")]
+
+[node name="spawner_powerups" parent="." instance=ExtResource("5_6rvj8")]
+
+[node name="text_score" type="TextureRect" parent="."]
+offset_left = 258.0
+offset_top = 8.0
+offset_right = 358.0
+offset_bottom = 58.0
+texture = ExtResource("6_e01eu")
+script = SubResource("GDScript_y0wx2")
+
+[node name="Label" type="Label" parent="text_score"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 88.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("7_dtd8o")
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="menu" type="Button" parent="."]
+visible = false
+offset_left = 134.0
+offset_top = 300.0
+offset_right = 229.0
+offset_bottom = 341.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("8_k8ryh")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_3n57s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6m5mg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u71iu")
+text = "MENU"
+script = SubResource("GDScript_x67d1")
+
+[node name="life" type="Sprite2D" parent="."]
+position = Vector2(5, 11)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("13_alht5")
+centered = false
+hframes = 5
+frame = 4
+script = SubResource("GDScript_hpffd")
+
+[connection signal="armor_changed" from="ship" to="life" method="_on_ship_armor_changed"]
+[connection signal="tree_exited" from="ship" to="menu" method="_on_ship_tree_exited"]
+[connection signal="pressed" from="menu" to="menu" method="_on_pressed"]

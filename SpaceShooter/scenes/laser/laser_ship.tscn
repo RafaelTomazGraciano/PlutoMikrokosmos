@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6mmpg1oe550j"]
+
+[ext_resource type="Script" path="res://scripts/laser/laser_ship.gd" id="1_fl4q0"]
+[ext_resource type="Texture2D" uid="uid://dbakocr0rlrcu" path="res://assets/Shoot/Nave Shoots/3_Shoot/S3_0004.png" id="2_e825r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tndhh"]
+size = Vector2(24, 36)
+
+[node name="laser_ship" type="Area2D"]
+script = ExtResource("1_fl4q0")
+velocity = Vector2(0, -1000)
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(3.3, 3.3)
+texture = ExtResource("2_e825r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_tndhh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

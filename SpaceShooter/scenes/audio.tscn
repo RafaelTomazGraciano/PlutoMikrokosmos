@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlxeixl5q3rlu"]
+
+[ext_resource type="Script" path="res://scripts/audio.gd" id="1_x1y2t"]
+[ext_resource type="AudioStream" uid="uid://dxax1pa3ir04u" path="res://sounds/explosion.wav" id="2_hper5"]
+[ext_resource type="AudioStream" uid="uid://wa7ilpevkoqq" path="res://sounds/hit_enemy.wav" id="3_b5a6t"]
+[ext_resource type="AudioStream" uid="uid://cw7yrp4w5tvwf" path="res://sounds/hit_ship.wav" id="4_nyl4a"]
+[ext_resource type="AudioStream" uid="uid://cxyn5vb1jeoa6" path="res://sounds/laser_enemy.wav" id="5_i8xh2"]
+[ext_resource type="AudioStream" uid="uid://4qscihjpscgt" path="res://sounds/laser_ship.wav" id="6_ocmth"]
+[ext_resource type="AudioStream" uid="uid://ho567vrt7luq" path="res://sounds/music.ogg" id="7_epbvy"]
+[ext_resource type="AudioStream" uid="uid://ba8vmvfmdw5fg" path="res://sounds/powerup.wav" id="8_ukaye"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("1_x1y2t")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hper5")
+volume_db = -12.0
+max_polyphony = 5
+
+[node name="HitEnemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b5a6t")
+volume_db = -8.0
+max_polyphony = 5
+
+[node name="HitShip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nyl4a")
+volume_db = -10.0
+max_polyphony = 5
+
+[node name="LaserEnemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i8xh2")
+volume_db = -5.0
+max_polyphony = 5
+
+[node name="LaserShip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ocmth")
+volume_db = -3.0
+max_polyphony = 5
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_epbvy")
+volume_db = -10.0
+
+[node name="Powerup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ukaye")
+volume_db = -5.0
+max_polyphony = 5
