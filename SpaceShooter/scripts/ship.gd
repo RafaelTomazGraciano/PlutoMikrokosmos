@@ -9,6 +9,9 @@ const  scene_flash = preload("res://scenes/flash.tscn")
 #variable of life with get and set
 @export var armor := 4:
 	set(value):
+		if shield:
+			return
+		
 		if value > 4:
 			return
 		
@@ -32,6 +35,16 @@ var is_triple_shooting = false:
 		await get_tree().create_timer(5.0).timeout
 		is_triple_shooting = false
 		$Timer.wait_time = 0.5
+
+
+var shield = false:
+	set(new_value):
+		shield = new_value
+		if shield:
+			$shield.visible = true
+			await get_tree().create_timer(4.0).timeout
+			shield = false
+			$shield.visible = false
 
 
 signal armor_changed

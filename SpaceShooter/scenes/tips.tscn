@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bll5go266krw2"]
+[gd_scene load_steps=14 format=3 uid="uid://bll5go266krw2"]
 
 [ext_resource type="FontFile" path="res://fonts/m5x7.tres" id="1_1stwk"]
 [ext_resource type="Texture2D" uid="uid://6egv68s21ipb" path="res://assets/Background/Start_menu.png" id="1_jgqrp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csqwegnbuk0fg" path="res://assets/Effects/Heart_recharge.png" id="7_3ures"]
 [ext_resource type="FontFile" uid="uid://bvpbxe36uh3al" path="res://fonts/m5x7.ttf" id="7_hlpm7"]
 [ext_resource type="Texture2D" uid="uid://bq385c65m3a8o" path="res://assets/Powers/Power_1.png" id="8_5oic0"]
+[ext_resource type="Texture2D" uid="uid://c6cod5k5o3xji" path="res://assets/Powers/Power_2.png" id="9_6komm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hl161"]
 texture = ExtResource("2_6h5o2")
@@ -50,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="background" type="Sprite2D" parent="."]
+scale = Vector2(1, 1.09531)
 texture = ExtResource("1_jgqrp")
 centered = false
 
@@ -114,6 +116,7 @@ offset_left = 66.0
 offset_top = 161.0
 offset_right = 96.0
 offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_hlpm7")
 theme_override_font_sizes/font_size = 40
 text = "OR"
@@ -161,10 +164,11 @@ horizontal_alignment = 1
 
 [node name="explain" type="Label" parent="."]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 166.0
-offset_right = 300.0
-offset_bottom = 233.0
+offset_left = 157.0
+offset_top = 157.0
+offset_right = 297.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_hlpm7")
 theme_override_font_sizes/font_size = 40
 text = "Move right
@@ -182,6 +186,7 @@ offset_left = 122.0
 offset_top = 260.0
 offset_right = 315.0
 offset_bottom = 292.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_hlpm7")
 theme_override_font_sizes/font_size = 40
 text = "Restore health"
@@ -198,9 +203,26 @@ offset_left = 122.0
 offset_top = 315.0
 offset_right = 262.0
 offset_bottom = 347.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_hlpm7")
 theme_override_font_sizes/font_size = 40
 text = "Power-ups"
 horizontal_alignment = 1
+
+[node name="shield" type="Sprite2D" parent="."]
+position = Vector2(88, 390)
+scale = Vector2(3, 3)
+texture = ExtResource("9_6komm")
+
+[node name="explain4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 370.0
+offset_right = 262.0
+offset_bottom = 402.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_hlpm7")
+theme_override_font_sizes/font_size = 40
+text = "Shield"
 
 [connection signal="pressed" from="back" to="back" method="_on_pressed"]

@@ -29,5 +29,5 @@ func _on_spawn_enemy():
 
 func adjust_spawn_time():
 	var score = get_node("/root/main/text_score").score
-	spawn_time = max(1.0, spawn_time - (score / 1000.0))
+	spawn_time = max(1.3, spawn_time - (score / 1000.0))
 	spawn_timer.wait_time = spawn_time

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwnj7dkjsnwtc"]
+[gd_scene load_steps=7 format=3 uid="uid://dwnj7dkjsnwtc"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_dftsr"]
 [ext_resource type="Texture2D" uid="uid://dc3fm3k8aqdni" path="res://assets/Ships/Player/BlueShip.png" id="1_l1vuv"]
 [ext_resource type="Texture2D" uid="uid://bq3hlhhb5r44f" path="res://icon.png" id="1_prfcj"]
+[ext_resource type="Texture2D" uid="uid://dfarg5hravw8" path="res://assets/Shoot/Nave Shoots/2_shoot/S2_0001.png" id="4_v2iab"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5apnd"]
 animations = [{
@@ -53,3 +54,11 @@ shape = SubResource("RectangleShape2D_tq1lu")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="shield" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0.996078, 1, 0.447059)
+z_index = -1
+position = Vector2(-1.00001, 8)
+scale = Vector2(13.25, 8.16667)
+texture = ExtResource("4_v2iab")

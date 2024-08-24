@@ -2,11 +2,12 @@ extends Node2D
 
 var powerups = [
 	preload("res://scenes/power-ups/heart_recharge.tscn"),
-	preload("res://scenes/power-ups/power_up.tscn")
+	preload("res://scenes/power-ups/power_up.tscn"),
+	preload("res://scenes/power-ups/shield.tscn")
 ]
 
 func _ready() -> void:
-	$Timer.wait_time = randf_range(5.0, 8.0)
+	$Timer.wait_time = randf_range(5.0, 7.0)
 	$Timer.connect("timeout",Callable(self, "_on_Timer_timeout"))
 	$Timer.start()
 
@@ -19,3 +20,4 @@ func _on_Timer_timeout():
 	pos.y = -15
 	powerup.position = pos
 	get_node("container").add_child(powerup)
+	$Timer.wait_time = randf_range(5.0, 7.0)
