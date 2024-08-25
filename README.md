@@ -1,10 +1,10 @@
-# Space Shooter
+# Pluto Mikrokosmos
 
-**Space Shooter** is a simple game developed using ``Godot 4.3.stable``. Inspired by the classic *Space Invaders*, this game offers a nostalgic experience with modern enhancements. Players take control of a spaceship, battling waves of enemies in space with the goal of surviving as long as possible.
+**Pluto Mikrokosmos** is a simple game developed using ``Godot 4.3.stable``. Inspired by the classic *Space Invaders*, this game offers a nostalgic experience with modern enhancements. Players take control of a spaceship, battling waves of enemies in space with the goal of surviving as long as possible.
 
 ## The Game
 
-In *Space Shooter*, players face an endless onslaught of alien invaders. With time the enemies become more challenging, testing the player’s reflexes and strategic thinking.
+In *Pluto Mikrokosmos*, players face an endless onslaught of alien invaders. With time the enemies become more challenging, testing the player’s reflexes and strategic thinking.
 
 | Start Screen |        | Playing Screen |
 |----------|--------|----------|
