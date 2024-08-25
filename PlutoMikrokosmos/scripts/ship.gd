@@ -23,6 +23,8 @@ const  scene_flash = preload("res://scenes/flash.tscn")
 		emit_signal("armor_changed", armor)
 		if  armor <= 0:
 			create_explosion()
+			await get_tree().process_frame
+			get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 			queue_free()
 	get:
 		return armor

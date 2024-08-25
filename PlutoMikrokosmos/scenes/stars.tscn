@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://byull7c5x8pg"]
+
+[ext_resource type="Script" path="res://scripts/stars.gd" id="1_cxknd"]
+[ext_resource type="Texture2D" uid="uid://dm7x0utji480s" path="res://assets/Space Stuff/Stars_close_3.png" id="3_4mjfu"]
+[ext_resource type="Texture2D" uid="uid://dux4m6n2d46gi" path="res://assets/Space Stuff/Stars_far_3.png" id="10_pw6p2"]
+
+[sub_resource type="GDScript" id="GDScript_cbsqq"]
+script/source = "extends Sprite2D
+
+
+@export var velocity = Vector2()
+
+
+func _process(delta: float) -> void:
+	translate(velocity * delta)
+	
+	if position.y >= get_viewport_rect().size.y:
+		position = (Vector2(0, -360))
+"
+
+[node name="background" type="Node2D"]
+script = ExtResource("1_cxknd")
+
+[node name="stars_far" type="Node2D" parent="."]
+
+[node name="star_far1" type="Sprite2D" parent="stars_far"]
+scale = Vector2(2, 2)
+texture = ExtResource("10_pw6p2")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)
+
+[node name="star_far2" type="Sprite2D" parent="stars_far"]
+position = Vector2(0, 340)
+scale = Vector2(2, 2)
+texture = ExtResource("10_pw6p2")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)
+
+[node name="star_far3" type="Sprite2D" parent="stars_far"]
+position = Vector2(0, -340)
+scale = Vector2(2, 2)
+texture = ExtResource("10_pw6p2")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)
+
+[node name="stars_close" type="Node2D" parent="."]
+
+[node name="star_close1" type="Sprite2D" parent="stars_close"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_4mjfu")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)
+
+[node name="star_close2" type="Sprite2D" parent="stars_close"]
+position = Vector2(0, 340)
+scale = Vector2(2, 2)
+texture = ExtResource("3_4mjfu")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)
+
+[node name="star_close3" type="Sprite2D" parent="stars_close"]
+position = Vector2(0, -340)
+scale = Vector2(2, 2)
+texture = ExtResource("3_4mjfu")
+centered = false
+script = SubResource("GDScript_cbsqq")
+velocity = Vector2(0, 200)

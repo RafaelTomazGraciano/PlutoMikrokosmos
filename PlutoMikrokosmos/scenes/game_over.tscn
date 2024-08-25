@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://n2bcg4gmjtoi"]
+
+[ext_resource type="Texture2D" uid="uid://c74piqn6wluq6" path="res://assets/Background/game_over.png" id="1_v3io8"]
+[ext_resource type="FontFile" path="res://fonts/m5x7.tres" id="2_ujte2"]
+[ext_resource type="Texture2D" uid="uid://bdt10p0vx7sal" path="res://assets/Button/Hover button.png" id="3_mkm8e"]
+[ext_resource type="Texture2D" uid="uid://eorb7sjqft0u" path="res://assets/Score and life/Score2.png" id="3_u7hvt"]
+[ext_resource type="Texture2D" uid="uid://dkf3pfdkw0qei" path="res://assets/Button/Press button.png" id="4_boul0"]
+[ext_resource type="Texture2D" uid="uid://iivimh0imhhv" path="res://assets/Button/Normal button.png" id="5_aij88"]
+[ext_resource type="FontFile" uid="uid://bvpbxe36uh3al" path="res://fonts/m5x7.ttf" id="7_dnmkv"]
+
+[sub_resource type="GDScript" id="GDScript_2a3vu"]
+script/source = "extends Sprite2D
+
+
+func _ready() -> void:
+	get_tree().paused = false
+	$text_score/Label.text = str(Game.bestscore)
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/start.tscn\")
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffdt0"]
+texture = ExtResource("3_mkm8e")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i64ga"]
+texture = ExtResource("4_boul0")
+expand_margin_left = 17.0
+expand_margin_top = 18.0
+expand_margin_right = 15.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4erj"]
+texture = ExtResource("5_aij88")
+expand_margin_left = 12.0
+expand_margin_top = 13.0
+expand_margin_right = 10.0
+expand_margin_bottom = 15.0
+
+[node name="game_over" type="Sprite2D"]
+texture = ExtResource("1_v3io8")
+centered = false
+script = SubResource("GDScript_2a3vu")
+
+[node name="menu" type="Button" parent="."]
+offset_left = 139.0
+offset_top = 351.0
+offset_right = 234.0
+offset_bottom = 392.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_ujte2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxTexture_ffdt0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i64ga")
+theme_override_styles/normal = SubResource("StyleBoxTexture_m4erj")
+text = "MENU"
+
+[node name="bestscore" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 276.0
+offset_right = 259.0
+offset_bottom = 324.0
+scale = Vector2(0.6, 0.6)
+theme_override_fonts/font = ExtResource("7_dnmkv")
+theme_override_font_sizes/font_size = 60
+text = "Score:
+"
+horizontal_alignment = 2
+
+[node name="text_score" type="TextureRect" parent="."]
+offset_left = 173.0
+offset_top = 269.0
+offset_right = 273.0
+offset_bottom = 319.0
+texture = ExtResource("3_u7hvt")
+
+[node name="Label" type="Label" parent="text_score"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 90.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("7_dnmkv")
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="title" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 171.0
+offset_right = 400.0
+offset_bottom = 334.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_color = Color(0.792157, 0.0470588, 0, 1)
+theme_override_fonts/font = ExtResource("7_dnmkv")
+theme_override_font_sizes/font_size = 100
+text = "Game over"
+horizontal_alignment = 1
+
+[node name="title2" type="Label" parent="title"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 68.75
+offset_right = 430.0
+offset_bottom = 231.75
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.792157, 0.0470588, 0, 1)
+theme_override_fonts/font = ExtResource("7_dnmkv")
+theme_override_font_sizes/font_size = 100
+text = "Try again!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
